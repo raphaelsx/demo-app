@@ -1,0 +1,34 @@
+{
+    "xsappname": "demo-app-router",
+    "tenant-mode": "dedicated",
+    "scopes": [
+        {
+            "name": "uaa.user",
+            "description": "UAA"
+        },
+        {
+            "name": "$XSAPPNAME.Protected",
+            "description": "Default access scope"
+        }
+    ],
+    "role-templates": [
+        {
+            "name": "DemoApp_Protected",
+            "description": "Default access role template",
+            "default-role-name": "Acccess: Default App Access",
+            "scope-references": [
+                "uaa.user",
+                "$XSAPPNAME.Protected"
+            ]
+        }
+    ],
+    "role-collections": [
+        {
+            "name": "DemoApp_Protected",
+            "description": "Default access role template",
+            "role-template-references": [
+                "$XSAPPNAME.DemoApp_Protected"
+            ]
+        }
+    ]
+}

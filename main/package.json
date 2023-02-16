@@ -1,0 +1,11 @@
+{
+	"name": "demo-app-main",
+	"version": "1.0.0",
+	"dependencies": {
+        "express": "^4.17.1",
+		"sap-cf-axios": "^0.4.8"
+	},
+	"scripts": {
+		"start": "node server.js"
+	}
+}

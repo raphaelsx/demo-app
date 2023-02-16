@@ -1,0 +1,58 @@
+ID: demo-app
+_schema-version: "3.1"
+version: 0.0.1
+
+modules:
+  - name: demo-app-main
+    type: nodejs
+    path: main
+    parameters:
+      memory: 128M
+      disk-quota: 512M
+      routes:
+        - route: "axpo-demo-app-${space}.cfapps.eu20.hana.ondemand.com"
+    provides:
+      - name: srv_api
+        properties:
+          url: ${default-url}
+    requires:
+      - name: xsuaa-demo-app
+      - name: destination-demo-app
+      - name: connectivity-demo-app
+
+  - name: demo-app-router
+    type: nodejs
+    path: router
+    parameters:
+      memory: 128M
+      disk-quota: 256M
+      routes:
+        - route: "axpo-demo-app-router-${space}.cfapps.eu20.hana.ondemand.com"
+    requires:
+      - name: xsuaa-demo-app
+      - name: destination-demo-app
+      - name: connectivity-demo-app
+      - name: srv_api
+        group: destinations
+        properties:
+          name: default
+          url: "https://axpo-demo-app-${space}.cfapps.eu20.hana.ondemand.com"
+          forwardAuthToken: true
+
+resources:
+  - name: xsuaa-demo-app
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+  - name: destination-demo-app
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: lite
+      service: destination
+  - name: connectivity-demo-app
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: lite
+      service: connectivity

@@ -1,0 +1,9 @@
+{
+    "name": "demo-app-router",
+    "dependencies": {
+        "@sap/approuter": "latest"
+    },
+    "scripts": {
+        "start": "node approuter.js"
+    }
+}
