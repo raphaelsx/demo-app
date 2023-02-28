@@ -1,7 +1,9 @@
 # demo-app
 BTP Demo App
 
-#GIT add all files
+#GIT commands
+git remote set-url origin https://github.com/raphaelsx/demo-app.git
+git push -u origin main
 git add .
 git commit -m "<commit name>"
 
