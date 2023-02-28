@@ -19,6 +19,7 @@ app.get('/protected/test_destination', async function (req, res) {
                     authorization 
                 }
             });
+            console.log(response);
         } else {
             return_message.status = "ERROR";
             return_message.message = "Missing query paramter 'destination' and 'path'";
