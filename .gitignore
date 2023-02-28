@@ -1,3 +1,7 @@
 /mta_archives/
+/gen/
 /node_modules/
+/main/node_modules/
+/router/node_modules/
 /resources/
+./vscode
